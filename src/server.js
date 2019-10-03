@@ -5,12 +5,12 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 
-const db = require("./db");
+const prisma = require("./db");
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ ...req, db })
+  context: ({ req }) => ({ ...req, prisma })
 });
 
 server.listen().then(({ url }) => {
